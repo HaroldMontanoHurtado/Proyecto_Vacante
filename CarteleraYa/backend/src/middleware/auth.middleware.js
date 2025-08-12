@@ -2,18 +2,25 @@ import jwt from "jsonwebtoken";
 
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1];
-    if (!token) return res.status(401).json({ message: "Token requerido" });
+    const token = authHeader && authHeader.startsWith("Bearer ") ? authHeader.split(" ")[1] : null;
+    if (!token) {
+        return res.status(401).json({ message: "Token requerido" });
+    }
 
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.status(403).json({ message: "Token inválido" });
+        if (err) {
+            return res.status(403).json({ message: "Token inválido" });
+        }
         req.user = user;
         next();
     });
 };
 
 const verifyRole = (roles) => (req, res, next) => {
-    if (!roles.includes(req.user.rol)) {
+    if (!req.user) {
+        return res.status(401).json({ message: "No autenticado" });
+    }
+    if (!req.user.rol || !roles.includes(req.user.rol)) {
         return res.status(403).json({ message: "No tienes permisos para esta acción" });
     }
     next();
