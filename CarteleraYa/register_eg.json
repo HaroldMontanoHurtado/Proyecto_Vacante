@@ -1,122 +1,176 @@
 [
-{
-    "nombre": "Ana",
-    "apellido": "García",
-    "email": "ana.garcia@example.com",
-    "telefono": "3001112222",
-    "contrasena": "passAna123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Luis",
-    "apellido": "Martínez",
-    "email": "luis.martinez@example.com",
-    "telefono": "3003334444",
-    "contrasena": "passLuis123",
-    "rol": "cliente"
-},
-{
-    "nombre": "María",
-    "apellido": "Rodríguez",
-    "email": "maria.rodriguez@example.com",
-    "telefono": "3005556666",
-    "contrasena": "passMaria123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Carlos",
-    "apellido": "López",
-    "email": "carlos.lopez@example.com",
-    "telefono": "3007778888",
-    "contrasena": "passCarlos123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Sofía",
-    "apellido": "Hernández",
-    "email": "sofia.hernandez@example.com",
-    "telefono": "3009990000",
-    "contrasena": "passSofia123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Andrés",
-    "apellido": "Gómez",
-    "email": "andres.gomez@example.com",
-    "telefono": "3011112222",
-    "contrasena": "passAndres123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Laura",
-    "apellido": "Díaz",
-    "email": "laura.diaz@example.com",
-    "telefono": "3013334444",
-    "contrasena": "passLaura123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Javier",
-    "apellido": "Vargas",
-    "email": "javier.vargas@example.com",
-    "telefono": "3015556666",
-    "contrasena": "passJavier123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Natalia",
-    "apellido": "Mendoza",
-    "email": "natalia.mendoza@example.com",
-    "telefono": "3017778888",
-    "contrasena": "passNatalia123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Miguel",
-    "apellido": "Ruiz",
-    "email": "miguel.ruiz@example.com",
-    "telefono": "3019990000",
-    "contrasena": "passMiguel123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Valentina",
-    "apellido": "Castro",
-    "email": "valentina.castro@example.com",
-    "telefono": "3021112222",
-    "contrasena": "passValentina123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Diego",
-    "apellido": "Ortega",
-    "email": "diego.ortega@example.com",
-    "telefono": "3023334444",
-    "contrasena": "passDiego123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Camila",
-    "apellido": "Suárez",
-    "email": "camila.suarez@example.com",
-    "telefono": "3025556666",
-    "contrasena": "passCamila123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Sebastián",
-    "apellido": "Ramos",
-    "email": "sebastian.ramos@example.com",
-    "telefono": "3027778888",
-    "contrasena": "passSebastian123",
-    "rol": "cliente"
-},
-{
-    "nombre": "Daniela",
-    "apellido": "Torres",
-    "email": "daniela.torres@example.com",
-    "telefono": "3029990000",
-    "contrasena": "passDaniela123",
-    "rol": "cliente"
-}
+    {
+        "_comment": "USUARIOS (Cliente, Admin)"
+    },
+    {
+        "nombre": "Ana",
+        "apellido": "García",
+        "email": "ana.garcia@example.com",
+        "telefono": "3001112222",
+        "contrasena": "passAna123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Luis",
+        "apellido": "Martínez",
+        "email": "luis.martinez@example.com",
+        "telefono": "3003334444",
+        "contrasena": "passLuis123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "María",
+        "apellido": "Rodríguez",
+        "email": "maria.rodriguez@example.com",
+        "telefono": "3005556666",
+        "contrasena": "passMaria123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Carlos",
+        "apellido": "López",
+        "email": "carlos.lopez@example.com",
+        "telefono": "3007778888",
+        "contrasena": "passCarlos123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Sofía",
+        "apellido": "Hernández",
+        "email": "sofia.hernandez@example.com",
+        "telefono": "3009990000",
+        "contrasena": "passSofia123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Andrés",
+        "apellido": "Gómez",
+        "email": "andres.gomez@example.com",
+        "telefono": "3011112222",
+        "contrasena": "passAndres123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Laura",
+        "apellido": "Díaz",
+        "email": "laura.diaz@example.com",
+        "telefono": "3013334444",
+        "contrasena": "passLaura123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Javier",
+        "apellido": "Vargas",
+        "email": "javier.vargas@example.com",
+        "telefono": "3015556666",
+        "contrasena": "passJavier123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Natalia",
+        "apellido": "Mendoza",
+        "email": "natalia.mendoza@example.com",
+        "telefono": "3017778888",
+        "contrasena": "passNatalia123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Miguel",
+        "apellido": "Ruiz",
+        "email": "miguel.ruiz@example.com",
+        "telefono": "3019990000",
+        "contrasena": "passMiguel123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Valentina",
+        "apellido": "Castro",
+        "email": "valentina.castro@example.com",
+        "telefono": "3021112222",
+        "contrasena": "passValentina123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Diego",
+        "apellido": "Ortega",
+        "email": "diego.ortega@example.com",
+        "telefono": "3023334444",
+        "contrasena": "passDiego123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Camila",
+        "apellido": "Suárez",
+        "email": "camila.suarez@example.com",
+        "telefono": "3025556666",
+        "contrasena": "passCamila123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Sebastián",
+        "apellido": "Ramos",
+        "email": "sebastian.ramos@example.com",
+        "telefono": "3027778888",
+        "contrasena": "passSebastian123",
+        "rol": "cliente"
+    },
+    {
+        "nombre": "Daniela",
+        "apellido": "Torres",
+        "email": "daniela.torres@example.com",
+        "telefono": "3029990000",
+        "contrasena": "passDaniela123",
+        "rol": "cliente"
+    },
+    {
+        "_comment": "COMPRAS"
+    },
+    {
+        "usuario_id": 1,
+        "fecha_compra": "2025-08-12T14:00:00Z",
+        "total": 45.00,
+        "metodo_pago": "tarjeta",
+        "estado": "confirmado"
+    },
+    {
+        "usuario_id": 2,
+        "fecha_compra": "2025-08-12T15:30:00Z",
+        "total": 30.00,
+        "metodo_pago": "efectivo",
+        "estado": "confirmado"
+    },
+    {
+        "usuario_id": 1,
+        "fecha_compra": "2025-08-13T10:15:00Z",
+        "total": 15.00,
+        "metodo_pago": "tarjeta",
+        "estado": "cancelado"
+    },
+    {
+        "_comment": "ENTRADAS"
+    },
+    {
+        "compra_id": 1,
+        "pelicula_id": 1,
+        "cantidad": 2,
+        "precio_unitario": 15.00,
+        "fecha_funcion": "2025-08-20",
+        "codigo_ticket": "550e8400-e29b-41d4-a716-446655440000"
+    },
+    {
+        "compra_id": 1,
+        "pelicula_id": 5,
+        "cantidad": 1,
+        "precio_unitario": 15.00,
+        "fecha_funcion": "2025-08-20",
+        "codigo_ticket": "550e8400-e29b-41d4-a716-446655440001"
+    },
+    {
+        "compra_id": 2,
+        "pelicula_id": 3,
+        "cantidad": 2,
+        "precio_unitario": 15.00,
+        "fecha_funcion": "2025-08-21",
+        "codigo_ticket": "550e8400-e29b-41d4-a716-446655440002"
+    }
 ]
