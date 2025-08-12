@@ -1,19 +1,7 @@
-version: "3.8"
-
-networks:
-  carteleraya_network:
-    driver: bridge
-
 services:
-  frontend:
-    build: .
-    ports:
-      - "4200:80"
-    networks:
-      - carteleraya_network
-
   db:
     image: postgres:17.5
+    container_name: carteleraya-db
     restart: always
     environment:
       POSTGRES_USER: admin
@@ -24,21 +12,33 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - carteleraya_network
 
-  pgadmin:
-    image: dpage/pgadmin4:8
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    container_name: carteleraya-backend
     restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@carteleraya.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
+    env_file:
+      - .env
     ports:
-      - "8080:80"
+      - "3000:3000"
     depends_on:
       - db
-    networks:
-      - carteleraya_network
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: carteleraya-frontend
+    restart: always
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:

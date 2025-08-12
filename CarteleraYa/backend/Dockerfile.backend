@@ -1,0 +1,15 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copiamos solo los package.json primero para cache de dependencias
+COPY package*.json ./
+
+RUN npm install
+
+# Copiamos el resto del código
+COPY . .
+
+ENV NODE_ENV=production
+
+CMD ["node", "src/index.js"]

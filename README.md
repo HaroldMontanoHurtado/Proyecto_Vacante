@@ -57,3 +57,29 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+# Codigos esensiales
+
+## Levantar todo (primera vez o después de reset):
+```bash
+docker-compose up --build
+```
+## Apagar sin perder datos:
+```bash 
+docker-compose down
+```
+## Encender de nuevo:
+```bash
+docker-compose up -d
+```
+## Resetear base de datos (ejecuta otra vez init.sql):
+```bash
+docker-compose down -v
+docker-compose up --build
+```
+## Probrar testdb.js 
+```bash
+docker-compose exec backend sh
+node src/testdb.js
+```
