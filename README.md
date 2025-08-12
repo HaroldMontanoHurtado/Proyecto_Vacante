@@ -83,6 +83,35 @@ docker-compose up --build
 docker-compose exec backend sh
 node src/testdb.js
 ```
+
+# Comprobar nombres (NAMES) de la base de datos:
+```bash
+docker ps
+```
+# Ejecuta el siguiente comando para abrir una terminal interactiva dentro del contenedor y entrar a psql:
+```bash
+docker exec -it <nombre_contenedor_postgres> psql -U <usuario> -d carteleraya
+docker exec -it carteleraya-db psql -U admin -d carteleraya
+```
+
+# Ya dentro del prompt de psql (verás algo como carteleraya=#), pega la consulta SQL para crear el usuario admin:
+```sql
+INSERT INTO usuario (nombre, apellido, email, telefono, contrasena, rol)
+VALUES (
+  'Diego', 
+  'Ortega', 
+  'diego.ortega@example.com', 
+  '3023334444', 
+  '$2b$10$1Vx1rqGoW01nQORmrntsVekCdkllmCID1uvEQ5otGgODwUJEw67Lm', 
+  'admin'
+);
+```
+
+# Para actualizar el usuario Laura y darle rol admin:
+```sql
+UPDATE usuario SET rol = 'admin' WHERE email = 'laura.diaz@example.com';
+```
+
 ## link
 ```bash
 http://localhost:3000

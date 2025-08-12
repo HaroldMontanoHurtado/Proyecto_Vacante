@@ -2,14 +2,14 @@ import jwt from "jsonwebtoken";
 
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.startsWith("Bearer ") ? authHeader.split(" ")[1] : null;
+    const token = authHeader?.startsWith("Bearer ") ? authHeader.split(" ")[1] : null;
     if (!token) {
-        return res.status(401).json({ message: "Token requerido" });
+        return res.status(401).json({ message: "Autenticación requerida" });
     }
 
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) {
-            return res.status(403).json({ message: "Token inválido" });
+            return res.status(403).json({ message: "Acceso denegado" });
         }
         req.user = user;
         next();
