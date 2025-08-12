@@ -83,3 +83,8 @@ docker-compose up --build
 docker-compose exec backend sh
 node src/testdb.js
 ```
+## link
+```bash
+http://localhost:3000
+http://localhost:3000/api/peliculas
+```
