@@ -123,7 +123,7 @@
         "rol": "cliente"
     },
     {
-        "_comment": "COMPRAS"
+        "_comment": "________ COMPRAS ________"
     },
     {
         "usuario_id": 1,
@@ -147,18 +147,18 @@
         "estado": "cancelado"
     },
     {
-        "_comment": "ENTRADAS"
+        "_comment": "________ ENTRADAS ________"
     },
     {
-        "compra_id": 1,
+        "compra_id": 2,
         "pelicula_id": 1,
         "cantidad": 2,
-        "precio_unitario": 15.00,
+        "precio_unitario": 30.00,
         "fecha_funcion": "2025-08-20",
         "codigo_ticket": "550e8400-e29b-41d4-a716-446655440000"
     },
     {
-        "compra_id": 1,
+        "compra_id": 2,
         "pelicula_id": 5,
         "cantidad": 1,
         "precio_unitario": 15.00,
@@ -166,10 +166,10 @@
         "codigo_ticket": "550e8400-e29b-41d4-a716-446655440001"
     },
     {
-        "compra_id": 2,
+        "compra_id": 1,
         "pelicula_id": 3,
         "cantidad": 2,
-        "precio_unitario": 15.00,
+        "precio_unitario": 45.00,
         "fecha_funcion": "2025-08-21",
         "codigo_ticket": "550e8400-e29b-41d4-a716-446655440002"
     }
