@@ -11,14 +11,33 @@ import { DetalleEntrada } from './features/entradas/detalle-entrada/detalle-entr
 import { ListadoEntradas } from './features/entradas/listado-entradas/listado-entradas';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/peliculas', pathMatch: 'full' },
-  { path: 'login', component: Login },
-  { path: 'register', component: Register },
-  { path: 'peliculas', component: ListadoPeliculasComponent },
-  { path: 'compras', component: ListadoCompras },
-  { path: 'entradas', component: ListadoEntradas },
-  { path: 'entrada/:id', component: DetalleEntrada },
+  { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
+  {
+    path: 'auth/login', loadComponent: () =>
+      import('./features/auth/login/login').then(m => m.Login)
+  },
+  {
+    path: 'auth/register', loadComponent: () =>
+      import('./features/auth/register/register').then(m => m.Register)
+  },
+  {
+    path: 'peliculas', loadComponent: () =>
+      import('./features/peliculas/listado-peliculas/listado-peliculas').then(m => m.ListadoPeliculasComponent)
+  },
+  {
+    path: 'compras', loadComponent: () =>
+      import('./features/compras/listado-compras/listado-compras').then(m => m.ListadoCompras)
+  },
+  {
+    path: 'entradas', loadComponent: () =>
+      import('./features/entradas/listado-entradas/listado-entradas').then(m => m.ListadoEntradas)
+  },
+  {
+    path: 'entrada/:id', loadComponent: () =>
+      import('./features/entradas/detalle-entrada/detalle-entrada').then(m => m.DetalleEntrada)
+  },
 ];
+
 
 @Component({
   selector: 'app-root',
@@ -32,10 +51,11 @@ export const routes: Routes = [
     <mat-toolbar color="primary">
       <span>CarteleraYA</span>
       <span class="spacer"></span>
-      <a mat-button routerLink="/">Películas</a>
+      <a mat-button routerLink="/peliculas">Películas</a>
       <a mat-button routerLink="/compras">Compras</a>
       <a mat-button routerLink="/entradas">Entradas</a>
-      <a mat-button routerLink="/login">Login</a>
+      <a mat-button routerLink="/auth/login">Login</a>
+      <a mat-button routerLink="/auth/register">Register</a>
     </mat-toolbar>
     <router-outlet></router-outlet>
   `,

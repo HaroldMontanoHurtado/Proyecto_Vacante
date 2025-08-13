@@ -1,100 +1,91 @@
-# CarteleraYa
+# CarteleraYA
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
+CarteleraYA es una aplicación web para la gestión de películas, compras de entradas y usuarios. El proyecto utiliza **Angular** para el frontend, **Node.js/Express** para el backend y **PostgreSQL** como base de datos. La aplicación está dockerizada para facilitar su despliegue y ejecución.
 
-## Development server
+---
 
-To start a local development server, run:
+## Arquitectura del proyecto
 
+### Backend
+- **Tecnologías:** Node.js, Express, JWT para autenticación.
+- **Funcionalidades:**
+  - Registro y autenticación de usuarios.
+  - CRUD de películas, compras y entradas.
+  - Protección de rutas mediante JWT.
+  - Conexión a PostgreSQL para almacenamiento persistente.
+- **Ejecución:**
+  - Se encuentra en el contenedor `carteleraya-backend`.
+  - Escucha en el puerto `3000`.
+  - Depende del contenedor de la base de datos.
+- **Seguridad y validaciones implementadas:**
+  - Autenticación y autorización mediante **JWT** (JSON Web Tokens) para proteger rutas sensibles del backend.
+  - Validación de datos de entrada usando **express-validator**, asegurando que los usuarios envíen información correcta al registrarse o iniciar sesión, así como en la creación de compras, entradas y películas.
+  - Manejo centralizado de errores para devolver respuestas consistentes ante peticiones inválidas o fallidas.
+
+### Frontend
+- **Tecnologías:** Angular 20, Angular Material, RouterModule.
+- **Funcionalidades:**
+  - Registro y login de usuarios.
+  - Listado de películas.
+  - Gestión de compras y entradas.
+- **Configuración:**
+  - SPA servida mediante **Nginx** en contenedor `carteleraya-frontend`.
+  - Las rutas son gestionadas por Angular, asegurando que `/auth/login`, `/auth/register`.
+  - Se utiliza prerender y build de producción para optimizar la carga.
+  
+### Base de datos
+- **Tecnología:** PostgreSQL 17.5
+- **Contenedor:** `carteleraya-db`.
+- **Funcionalidades:**
+  - Almacenamiento de usuarios, películas, compras y entradas.
+  - Inicialización automática mediante script `init.sql`.
+- **Acceso:** Puerto `5432`, credenciales definidas en `.env`.
+
+---
+
+## Docker
+El proyecto utiliza **Docker Compose** para levantar los tres servicios: base de datos, backend y frontend.
+
+- **Comandos principales**
 ```bash
-ng serve
+docker-compose up -d --build
+docker-compose logs -f
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-
-# Codigos esensiales
-
-## Levantar todo (primera vez o después de reset):
+- **Levantar todo (primera vez o después de reset)**
 ```bash
 docker-compose up --build
 ```
-## Apagar sin perder datos:
+- **Apagar sin perder datos**
 ```bash 
 docker-compose down
 ```
-## Encender de nuevo:
+- **Encender de nuevo**
 ```bash
 docker-compose up -d
 ```
-## Resetear base de datos (ejecuta otra vez init.sql):
+- **Resetear base de datos (ejecuta otra vez init.sql)**
 ```bash
 docker-compose down -v
 docker-compose up --build
 ```
-## Probrar testdb.js 
+- **Probrar testdb.js** 
 ```bash
 docker-compose exec backend sh
 node src/testdb.js
 ```
 
-# Comprobar nombres (NAMES) de la base de datos:
+- **Comprobar nombres (NAMES) de la base de datos**
 ```bash
 docker ps
 ```
-# Ejecuta el siguiente comando para abrir una terminal interactiva dentro del contenedor y entrar a psql:
+- **Ejecuta el siguiente comando para abrir una terminal interactiva dentro del contenedor y entrar a psql**
 ```bash
 docker exec -it <nombre_contenedor_postgres> psql -U <usuario> -d carteleraya
 docker exec -it carteleraya-db psql -U admin -d carteleraya
 ```
 
-# Ya dentro del prompt de psql (verás algo como carteleraya=#), pega la consulta SQL para crear el usuario admin:
+- **Ya dentro del prompt de psql (verás algo como carteleraya=#), pega la consulta SQL para crear el usuario admin:**
 ```sql
 INSERT INTO usuario (nombre, apellido, email, telefono, contrasena, rol)
 VALUES (
@@ -107,40 +98,13 @@ VALUES (
 );
 ```
 
-# Para actualizar el usuario Laura y darle rol admin:
+- **Para actualizar el usuario Laura y darle rol admin:**
 ```sql
 UPDATE usuario SET rol = 'admin' WHERE email = 'laura.diaz@example.com';
 ```
 
-## link
+- **links**
 ```bash
 http://localhost:3000
 http://localhost:3000/api/peliculas
 ```
-
-CarteleraYa/
- └─ src/
-     └─ app/
-         ├─ admin/                 # Sin Angular Material
-         │   ├─ admin.module.ts    # Es necesario este archivo?
-         │   └─ ...                
-         ├─ auth/                  # Con Angular Material
-         │   ├─ auth.module.ts     # Importa MaterialModule
-         │   └─ ...
-         ├─ compras/               # Con Angular Material
-         │   ├─ compras.module.ts  # Importa MaterialModule
-         │   └─ ...
-         ├─ core/                  # Servicios, guardas, interceptores
-         ├─ entradas/              # Con Angular Material
-         │   ├─ entradas.module.ts # Importa MaterialModule
-         │   └─ ...
-         ├─ peliculas/             # Con Angular Material
-         │   ├─ peliculas.module.ts# Importa MaterialModule
-         │   └─ ...
-         ├─ services/              # Servicios específicos
-         ├─ shared/                # MaterialModule y demás utilidades compartidas
-         │   ├─ material.module.ts
-         │   └─ ...
-         ├─ app.component.ts
-         ├─ app.module.ts
-         └─ app-routing.module.ts
