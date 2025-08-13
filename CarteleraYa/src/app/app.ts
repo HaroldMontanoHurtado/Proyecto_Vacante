@@ -22,4 +22,4 @@ import { MatButtonModule } from '@angular/material/button';
     .spacer { flex: 1 1 auto; }
   `]
 })
-export class AppComponent { }
+export class App { }

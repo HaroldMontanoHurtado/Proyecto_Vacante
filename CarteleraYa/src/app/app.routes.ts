@@ -1,23 +1,42 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth-guard';
 
-export const appRoutes: Routes = [
+export const routes: Routes = [
     {
-        path: 'auth',
-        loadComponent: () => import('./features/auth/login/login').then(m => m.Login)
+        path: 'auth/login',
+        loadComponent: () =>
+            import('./features/auth/login/login').then((m) => m.Login),
+    },
+    {
+        path: 'auth/register',
+        loadComponent: () =>
+            import('./features/auth/register/register').then(
+                (m) => m.Register
+            ),
     },
     {
         path: 'peliculas',
-        loadComponent: () => import('./features/peliculas/listado-peliculas/listado-peliculas').then(m => m.ListadoPeliculasComponent)
+        canActivate: [authGuard],
+        loadComponent: () =>
+            import('./features/peliculas/listado-peliculas/listado-peliculas').then(
+                (m) => m.ListadoPeliculasComponent
+            ),
     },
     {
         path: 'compras',
-        loadComponent: () => import('./features/compras/listado-compras/listado-compras').then(m => m.ListadoCompras)
+        canActivate: [authGuard],
+        loadComponent: () =>
+            import('./features/compras/listado-compras/listado-compras').then(
+                (m) => m.ListadoCompras
+            ),
     },
     {
         path: 'entradas',
-        loadComponent: () => import('./features/entradas/listado-entradas/listado-entradas').then(m => m.ListadoEntradas
-
-        )
+        canActivate: [authGuard],
+        loadComponent: () =>
+            import('./features/entradas/listado-entradas/listado-entradas').then(
+                (m) => m.ListadoEntradas
+            ),
     },
-    { path: '', redirectTo: '/peliculas', pathMatch: 'full' }
+    { path: '', redirectTo: '/peliculas', pathMatch: 'full' },
 ];

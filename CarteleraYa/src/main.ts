@@ -3,14 +3,14 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 
-import { appRoutes } from './app/app.routes';
-import { AppComponent } from './app/app';
+import { routes } from './app/app.routes';
+import { App } from './app/app';
 import { tokenInterceptor } from './app/core/interceptors/token-interceptor';
 
-bootstrapApplication(AppComponent, {
+bootstrapApplication(App, {
   providers: [
     provideAnimations(),
     provideHttpClient(withInterceptors([tokenInterceptor])),
-    provideRouter(appRoutes)
+    provideRouter(routes)
   ]
 }).catch(err => console.error(err));
