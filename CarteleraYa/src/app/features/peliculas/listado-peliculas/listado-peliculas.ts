@@ -1,54 +1,71 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
 
 export interface Pelicula {
+  id?: number;
   titulo: string;
+  descripcion: string;
+  duracion_min: number;
+  clasificacion: string;
   genero: string;
-  duracion: number;
+  imagen_url: string;
+  estado: 'activo' | 'inactivo';
 }
 
-const ELEMENT_DATA: Pelicula[] = [
-  { titulo: 'Matrix', genero: 'Ciencia Ficción', duracion: 136 },
-  { titulo: 'Inception', genero: 'Acción', duracion: 148 },
-  { titulo: 'Titanic', genero: 'Drama', duracion: 195 }
-];
+const PELICULAS: Pelicula[] = [];
 
 @Component({
   selector: 'app-listado-peliculas',
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, FormsModule],
   template: `
-    <h2>Listado de Películas</h2>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <h2>Administración de Películas</h2>
+    
+    <h3>Crear / Editar Película</h3>
+    <form>
+      <input placeholder="Título" [(ngModel)]="pelicula.titulo" name="titulo"/>
+      <input placeholder="Género" [(ngModel)]="pelicula.genero" name="genero"/>
+      <input placeholder="Duración (min)" [(ngModel)]="pelicula.duracion_min" name="duracion_min" type="number"/>
+      <input placeholder="Clasificación" [(ngModel)]="pelicula.clasificacion" name="clasificacion"/>
+      <input placeholder="URL Imagen" [(ngModel)]="pelicula.imagen_url" name="imagen_url"/>
+      <select [(ngModel)]="pelicula.estado" name="estado">
+        <option value="activo">Activo</option>
+        <option value="inactivo">Inactivo</option>
+      </select>
+      <button (click)="guardar()">Guardar</button>
+    </form>
 
-      <ng-container matColumnDef="titulo">
-        <th mat-header-cell *matHeaderCellDef> Título </th>
-        <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="genero">
-        <th mat-header-cell *matHeaderCellDef> Género </th>
-        <td mat-cell *matCellDef="let element"> {{element.genero}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="duracion">
-        <th mat-header-cell *matHeaderCellDef> Duración (min) </th>
-        <td mat-cell *matCellDef="let element"> {{element.duracion}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  `,
-  styles: [`
-    table {
-      width: 100%;
-      margin-top: 20px;
-    }
-  `]
+    <h3>Listado de Películas</h3>
+    <ul>
+      <li *ngFor="let p of peliculas">
+        {{p.titulo}} ({{p.estado}})
+        <button (click)="editar(p)">Editar</button>
+        <button (click)="inhabilitar(p)">Inhabilitar</button>
+      </li>
+    </ul>
+  `
 })
 export class ListadoPeliculasComponent {
-  displayedColumns: string[] = ['titulo', 'genero', 'duracion'];
-  dataSource = ELEMENT_DATA;
+  peliculas: Pelicula[] = PELICULAS;
+  pelicula: Pelicula = { titulo: '', descripcion: '', duracion_min: 0, clasificacion: '', genero: '', imagen_url: '', estado: 'activo' };
+
+  guardar() {
+    if (!this.pelicula.id) {
+      this.pelicula.id = Date.now();
+      this.peliculas.push({ ...this.pelicula });
+    } else {
+      const index = this.peliculas.findIndex(p => p.id === this.pelicula.id);
+      this.peliculas[index] = { ...this.pelicula };
+    }
+    this.pelicula = { titulo: '', descripcion: '', duracion_min: 0, clasificacion: '', genero: '', imagen_url: '', estado: 'activo' };
+  }
+
+  editar(p: Pelicula) {
+    this.pelicula = { ...p };
+  }
+
+  inhabilitar(p: Pelicula) {
+    p.estado = 'inactivo';
+  }
 }
