@@ -117,3 +117,30 @@ UPDATE usuario SET rol = 'admin' WHERE email = 'laura.diaz@example.com';
 http://localhost:3000
 http://localhost:3000/api/peliculas
 ```
+
+CarteleraYa/
+ └─ src/
+     └─ app/
+         ├─ admin/                 # Sin Angular Material
+         │   ├─ admin.module.ts    # Es necesario este archivo?
+         │   └─ ...                
+         ├─ auth/                  # Con Angular Material
+         │   ├─ auth.module.ts     # Importa MaterialModule
+         │   └─ ...
+         ├─ compras/               # Con Angular Material
+         │   ├─ compras.module.ts  # Importa MaterialModule
+         │   └─ ...
+         ├─ core/                  # Servicios, guardas, interceptores
+         ├─ entradas/              # Con Angular Material
+         │   ├─ entradas.module.ts # Importa MaterialModule
+         │   └─ ...
+         ├─ peliculas/             # Con Angular Material
+         │   ├─ peliculas.module.ts# Importa MaterialModule
+         │   └─ ...
+         ├─ services/              # Servicios específicos
+         ├─ shared/                # MaterialModule y demás utilidades compartidas
+         │   ├─ material.module.ts
+         │   └─ ...
+         ├─ app.component.ts
+         ├─ app.module.ts
+         └─ app-routing.module.ts
