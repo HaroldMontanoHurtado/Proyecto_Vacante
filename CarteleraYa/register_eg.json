@@ -56,7 +56,7 @@
     "email": "laura.diaz@example.com",
     "telefono": "3013334444",
     "contrasena": "passLaura123",
-    "rol": "cliente"
+    "rol": "admin"
 },
 {
     "nombre": "Javier",
@@ -95,8 +95,8 @@
     "apellido": "Ortega",
     "email": "diego.ortega@example.com",
     "telefono": "3023334444",
-    "contrasena": "passDiego123", "Hash bcrypt": "$2b$10$1Vx1rqGoW01nQORmrntsVekCdkllmCID1uvEQ5otGgODwUJEw67Lm",
-    "rol": "cliente"
+    "contrasena": "passDiego123",
+    "rol": "admin"
 },
 {
     "nombre": "Camila",
